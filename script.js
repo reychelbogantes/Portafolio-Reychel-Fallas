@@ -12,14 +12,16 @@ function toggleTheme() {
   darkMode = !darkMode;
   document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : '');
   const btn = document.getElementById('theme-btn');
-  if (btn) btn.textContent = darkMode ? '☀️ Claro' : '🌙 Oscuro';
+  if (btn) btn.innerHTML = darkMode ? '<i data-lucide="sun"></i> Claro' : '<i data-lucide="moon"></i> Oscuro';
+lucide.createIcons();
 }
 
 // ─── LANGUAGE ─────────────────────────────
 function toggleLang() {
   lang = lang === 'es' ? 'en' : 'es';
   const btn = document.getElementById('lang-btn');
-  if (btn) btn.textContent = lang === 'es' ? '🌐 EN' : '🌐 ES';
+ if (btn) btn.innerHTML = lang === 'es' ? '<i data-lucide="globe"></i> EN' : '<i data-lucide="globe"></i> ES';
+lucide.createIcons();
 
   // Actualiza todos los elementos con atributos data-es / data-en
   document.querySelectorAll('[data-es]').forEach(el => {

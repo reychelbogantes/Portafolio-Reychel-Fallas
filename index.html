@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
@@ -22,10 +24,10 @@
         <li><a href="#contact"  data-es="Contacto"    data-en="Contact">Contacto</a></li>
       </ul>
       <div class="nav-actions">
-        <button class="pill-btn" id="lang-btn" onclick="toggleLang()" aria-label="Cambiar idioma">🌐 EN</button>
-        <button class="pill-btn" id="theme-btn" onclick="toggleTheme()" aria-label="Cambiar tema">🌙 Oscuro</button>
+      <button class="pill-btn" id="lang-btn" onclick="toggleLang()" aria-label="Cambiar idioma"><i data-lucide="globe"></i> EN</button>        
+      <button class="pill-btn" id="theme-btn" onclick="toggleTheme()" aria-label="Cambiar tema"><i data-lucide="moon"></i> Oscuro</button>
       </div>
-      <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">☰</button>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú"><i data-lucide="menu"></i></button>
     </div>
     <div class="mobile-menu" id="mobile-menu">
       <a href="#about"    onclick="closeMenu()" data-es="Sobre mí"    data-en="About">Sobre mí</a>
@@ -87,7 +89,7 @@
     </div>
     <div class="skills-grid">
       <div class="skill-card">
-        <div class="skill-icon" style="background: rgba(211,50,67,0.12)">🖥️</div>
+        <div class="skill-icon" style="background: rgba(211,50,67,0.12)"><i data-lucide="monitor"></i></div>
         <h3 class="skill-cat">Frontend</h3>
         <div class="tags">
           <span class="tag">React</span><span class="tag">Vite</span><span class="tag">TypeScript</span>
@@ -96,7 +98,7 @@
         </div>
       </div>
       <div class="skill-card">
-        <div class="skill-icon" style="background: rgba(59,152,144,0.12)">⚙️</div>
+        <div class="skill-icon" style="background: rgba(59,152,144,0.12)"><i data-lucide="cpu"></i></div>
         <h3 class="skill-cat">Backend</h3>
         <div class="tags">
           <span class="tag">Python</span><span class="tag">Django REST</span><span class="tag">Node.js</span>
@@ -104,14 +106,14 @@
         </div>
       </div>
       <div class="skill-card">
-        <div class="skill-icon" style="background: rgba(113,136,4,0.12)">🗄️</div>
+        <div class="skill-icon" style="background: rgba(113,136,4,0.12)"><i data-lucide="database"></i></div>
         <h3 class="skill-cat" data-es="Bases de Datos" data-en="Databases">Bases de Datos</h3>
         <div class="tags">
           <span class="tag">PostgreSQL</span><span class="tag">MySQL</span>
         </div>
       </div>
       <div class="skill-card">
-        <div class="skill-icon" style="background: rgba(169,191,83,0.15)">🚀</div>
+        <div class="skill-icon" style="background: rgba(169,191,83,0.15)"><i data-lucide="rocket"></i></div>
         <h3 class="skill-cat">DevOps</h3>
         <div class="tags">
           <span class="tag">Docker</span><span class="tag">GitHub Actions</span><span class="tag">Git</span>
@@ -119,7 +121,7 @@
         </div>
       </div>
       <div class="skill-card">
-        <div class="skill-icon" style="background: rgba(224,124,142,0.15)">🎨</div>
+        <div class="skill-icon" style="background: rgba(224,124,142,0.15)"><i data-lucide="pen-tool"></i></div>
         <h3 class="skill-cat" data-es="Diseño" data-en="Design">Diseño</h3>
         <div class="tags">
           <span class="tag">Figma</span><span class="tag">Photoshop</span><span class="tag">Illustrator</span>
@@ -127,7 +129,7 @@
         </div>
       </div>
       <div class="skill-card">
-        <div class="skill-icon" style="background: rgba(160,216,205,0.2)">📋</div>
+        <div class="skill-icon" style="background: rgba(160,216,205,0.2)"><i data-lucide="clipboard-list"></i></div>
         <h3 class="skill-cat" data-es="Metodologías" data-en="Methodologies">Metodologías</h3>
         <div class="tags">
           <span class="tag">Agile</span><span class="tag">Scrum</span><span class="tag">Trello</span>
@@ -156,6 +158,7 @@
               sandbox="allow-scripts allow-same-origin allow-forms"
               aria-hidden="true"
               tabindex="-1"
+              style="transform: none;"
             ></iframe>
             <div class="preview-overlay">
               <span class="preview-cta" data-es="Ver proyecto →" data-en="View project →">Ver proyecto →</span>
@@ -202,7 +205,7 @@
       <article class="project-card">
         <div class="project-preview no-link">
           <div class="preview-placeholder">
-            <span class="placeholder-icon">💼</span>
+            <span class="placeholder-icon"><i data-lucide="linkedin"></i></span>
             <p data-es="Vista previa próximamente" data-en="Preview coming soon">Vista previa próximamente</p>
           </div>
         </div>
@@ -351,22 +354,22 @@
     </div>
     <div class="contact-grid">
       <a class="contact-card" href="mailto:rfallas.works@gmail.com">
-        <span class="contact-icon">✉️</span>
+        <span class="contact-icon"><i data-lucide="mail"></i></span>
         <span class="contact-label" data-es="Email" data-en="Email">Email</span>
         <span class="contact-val">rfallas.works@gmail.com</span>
       </a>
       <a class="contact-card" href="tel:+50686819901">
-        <span class="contact-icon">📱</span>
+        <span class="contact-icon"><i data-lucide="phone"></i></span>
         <span class="contact-label" data-es="Teléfono" data-en="Phone">Teléfono</span>
         <span class="contact-val">+506 8681-9901</span>
       </a>
       <a class="contact-card" href="https://linkedin.com/in/reychelfallas" target="_blank" rel="noopener">
-        <span class="contact-icon">💼</span>
+        <span class="contact-icon"><i class="fa-brands fa-linkedin"></i></span>
         <span class="contact-label">LinkedIn</span>
         <span class="contact-val">reychelfallas</span>
       </a>
       <a class="contact-card" href="https://github.com/reychelbogantes" target="_blank" rel="noopener">
-        <span class="contact-icon">🐙</span>
+        <span class="contact-icon"><i class="fa-brands fa-github"></i></span>
         <span class="contact-label">GitHub</span>
         <span class="contact-val">reychelbogantes</span>
       </a>
@@ -376,7 +379,7 @@
   <footer>
     <p data-es="© 2026 Reychel Fallas Bogantes · Diseñado y construido con 🍓" data-en="© 2026 Reychel Fallas Bogantes · Designed and built with 🍓">© 2026 Reychel Fallas Bogantes · Diseñado y construido con 🍓</p>
   </footer>
-
+  <script>lucide.createIcons();</script>
   <script src="script.js"></script>
 </body>
 </html>

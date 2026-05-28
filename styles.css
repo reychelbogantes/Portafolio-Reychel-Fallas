@@ -178,9 +178,9 @@ ul { list-style: none; }
   min-height: calc(100vh - var(--nav-h));
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 3rem;
-  max-width: 1100px;
+  /* max-width: 1100px; */
   margin: 0 auto;
   padding: 4rem 2rem;
   position: relative;
@@ -836,11 +836,42 @@ footer {
   .hero-btns { justify-content: center; }
   .hero-stats { justify-content: center; }
   .hero-desc { margin: 0 auto 2rem; }
-  .hero-visual { width: 200px; height: 200px; }
-  .avatar-ring { width: 160px; height: 160px; }
-  .avatar-inner { width: 120px; height: 120px; font-size: 2rem; }
-  .t3, .t4, .t5 { display: none; }
+  .hero-visual {
+    width: 280px;
+    height: 280px;
+    margin: 2rem auto 3rem;
+    flex-shrink: 0;
+  }
+  .avatar-ring {
+    width: 160px;
+    height: 160px;
+  }
+  .avatar-inner {
+    width: 120px;
+    height: 120px;
+    font-size: 2rem;
+  }
 
+  /* Etiquetas más pequeñas y reposicionadas para móvil */
+  .floating-tag {
+    font-size: 0.68rem;
+    padding: 0.25rem 0.6rem;
+  }
+  .t1 { top: 2%;  left: 5%; }
+  .t2 { top: 18%; right: 2%; }
+  .t3 { bottom: 22%; left: 2%; }
+  .t4 { bottom: 5%;  right: 5%; }
+  .t5 { top: 48%;  left: 0%; }
+
+  .avatar-ring {
+    width: 240px;
+    height: 240px;
+  }
+  .avatar-inner {
+    width: 180px;
+    height: 180px;
+    font-size: 3rem;
+  }
   .section { padding: 4rem 1.5rem; }
   .projects-grid { grid-template-columns: 1fr; }
   .skills-grid { grid-template-columns: 1fr; }
@@ -850,4 +881,34 @@ footer {
 @media (max-width: 480px) {
   .contact-grid { grid-template-columns: 1fr; }
   .hero-stats { gap: 1rem; }
+}
+
+/* Iconos Lucide */
+[data-lucide] {
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.8;
+  vertical-align: middle;
+}
+
+.skill-icon [data-lucide] {
+  width: 22px;
+  height: 22px;
+}
+
+.contact-icon [data-lucide] {
+  width: 26px;
+  height: 26px;
+  stroke: var(--c-teal);
+}
+
+.pill-btn [data-lucide] {
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+}
+
+.contact-icon .fa-brands {
+  font-size: 26px;
+  color: var(--c-teal);
 }
