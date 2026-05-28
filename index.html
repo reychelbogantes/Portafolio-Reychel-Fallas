@@ -1,540 +1,382 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reychel Fallas — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #f5f0ff;
-    --bg2: #ede6ff;
-    --bg3: #ffffff;
-    --text: #1a0a3c;
-    --text2: #5a4a7a;
-    --accent1: #7c3aed;
-    --accent2: #ec4899;
-    --accent3: #06b6d4;
-    --accent4: #f59e0b;
-    --card: #ffffff;
-    --border: #e4d9ff;
-    --tag-bg: #ede6ff;
-    --tag-text: #5b21b6;
-    --nav-bg: rgba(245,240,255,0.92);
-  }
-  [data-theme="dark"] {
-    --bg: #0f0a1e;
-    --bg2: #1a1030;
-    --bg3: #130d25;
-    --text: #f0e8ff;
-    --text2: #b89fd4;
-    --accent1: #a855f7;
-    --accent2: #f472b6;
-    --accent3: #22d3ee;
-    --accent4: #fbbf24;
-    --card: #1e1438;
-    --border: #2d1f50;
-    --tag-bg: #2d1f50;
-    --tag-text: #c4b5fd;
-    --nav-bg: rgba(15,10,30,0.95);
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    transition: background 0.3s, color 0.3s;
-    line-height: 1.6;
-  }
-  /* NAV */
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    background: var(--nav-bg);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0.85rem 2rem;
-  }
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800; font-size: 1.1rem;
-    background: linear-gradient(135deg, var(--accent1), var(--accent2));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .nav-links { display: flex; gap: 1.5rem; align-items: center; }
-  .nav-links a {
-    text-decoration: none; color: var(--text2); font-size: 0.88rem; font-weight: 500;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--accent1); }
-  .nav-controls { display: flex; gap: 0.6rem; }
-  .ctrl-btn {
-    background: var(--tag-bg); border: 1px solid var(--border);
-    color: var(--text2); border-radius: 20px; padding: 0.3rem 0.8rem;
-    font-size: 0.78rem; cursor: pointer; font-family: 'DM Sans', sans-serif;
-    transition: all 0.2s;
-  }
-  .ctrl-btn:hover { background: var(--accent1); color: white; border-color: var(--accent1); }
-  .ctrl-btn.active { background: var(--accent1); color: white; border-color: var(--accent1); }
-
-  /* HERO */
-  .hero {
-    min-height: 92vh;
-    display: flex; align-items: center;
-    padding: 4rem 2rem;
-    position: relative; overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0; z-index: 0;
-    background:
-      radial-gradient(ellipse 60% 60% at 70% 40%, rgba(124,58,237,0.13) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 40% at 20% 70%, rgba(236,72,153,0.10) 0%, transparent 70%),
-      radial-gradient(ellipse 30% 30% at 80% 80%, rgba(6,182,212,0.08) 0%, transparent 60%);
-  }
-  .hero-content { position: relative; z-index: 1; max-width: 700px; }
-  .hero-badge {
-    display: inline-block;
-    background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(236,72,153,0.15));
-    border: 1px solid rgba(124,58,237,0.3);
-    border-radius: 20px; padding: 0.35rem 1rem;
-    font-size: 0.82rem; color: var(--accent1); font-weight: 500; margin-bottom: 1.5rem;
-  }
-  .hero h1 {
-    font-family: 'Syne', sans-serif; font-weight: 800;
-    font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1;
-    margin-bottom: 0.5rem;
-  }
-  .hero h1 span {
-    background: linear-gradient(135deg, var(--accent1), var(--accent2), var(--accent3));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  }
-  .hero-role {
-    font-size: 1.25rem; color: var(--text2); font-weight: 300; margin-bottom: 1.5rem;
-  }
-  .hero-desc { font-size: 1rem; color: var(--text2); max-width: 560px; margin-bottom: 2rem; line-height: 1.7; }
-  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--accent1), var(--accent2));
-    color: white; padding: 0.75rem 1.75rem; border-radius: 30px;
-    text-decoration: none; font-weight: 500; font-size: 0.95rem; border: none; cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: inline-flex; align-items: center; gap: 0.5rem;
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(124,58,237,0.35); }
-  .btn-outline {
-    background: transparent; border: 1.5px solid var(--border);
-    color: var(--text); padding: 0.75rem 1.75rem; border-radius: 30px;
-    text-decoration: none; font-weight: 500; font-size: 0.95rem; cursor: pointer;
-    transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem;
-  }
-  .btn-outline:hover { border-color: var(--accent1); color: var(--accent1); }
-  .hero-stats {
-    display: flex; gap: 2.5rem; margin-top: 3rem; padding-top: 2rem;
-    border-top: 1px solid var(--border);
-  }
-  .stat-item { text-align: center; }
-  .stat-num {
-    font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800;
-    background: linear-gradient(135deg, var(--accent1), var(--accent2));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  }
-  .stat-label { font-size: 0.8rem; color: var(--text2); margin-top: 0.2rem; }
-
-  /* SECTIONS */
-  section { padding: 5rem 2rem; max-width: 960px; margin: 0 auto; }
-  .section-title {
-    font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
-  .section-title span {
-    background: linear-gradient(135deg, var(--accent1), var(--accent2));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  }
-  .section-subtitle { color: var(--text2); margin-bottom: 2.5rem; font-size: 0.95rem; }
-
-  /* SKILLS */
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
-  .skill-category {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 1.25rem;
-  }
-  .skill-cat-title {
-    font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
-    margin-bottom: 0.9rem; display: flex; align-items: center; gap: 0.5rem;
-  }
-  .skill-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .tag {
-    background: var(--tag-bg); color: var(--tag-text);
-    border-radius: 20px; padding: 0.25rem 0.7rem; font-size: 0.78rem; font-weight: 500;
-  }
-
-  /* PROJECTS */
-  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
-  .project-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 20px; padding: 1.5rem; position: relative;
-    transition: transform 0.2s, border-color 0.2s;
-    overflow: hidden;
-  }
-  .project-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    border-radius: 20px 20px 0 0;
-  }
-  .project-card:nth-child(1)::before { background: linear-gradient(90deg, var(--accent1), var(--accent2)); }
-  .project-card:nth-child(2)::before { background: linear-gradient(90deg, var(--accent2), var(--accent4)); }
-  .project-card:nth-child(3)::before { background: linear-gradient(90deg, var(--accent3), var(--accent1)); }
-  .project-card:hover { transform: translateY(-4px); border-color: var(--accent1); }
-  .project-icon {
-    width: 44px; height: 44px; border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.3rem; margin-bottom: 1rem;
-  }
-  .project-year {
-    position: absolute; top: 1.2rem; right: 1.2rem;
-    font-size: 0.75rem; color: var(--text2); font-weight: 500;
-  }
-  .project-title {
-    font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;
-  }
-  .project-desc { font-size: 0.87rem; color: var(--text2); margin-bottom: 1rem; line-height: 1.6; }
-  .project-tech { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-  .tech-tag {
-    background: var(--bg2); color: var(--text2);
-    border-radius: 6px; padding: 0.2rem 0.55rem; font-size: 0.74rem; font-weight: 500;
-  }
-
-  /* EXPERIENCE */
-  .timeline { position: relative; padding-left: 1.5rem; }
-  .timeline::before {
-    content: ''; position: absolute; left: 0; top: 6px; bottom: 6px;
-    width: 2px;
-    background: linear-gradient(to bottom, var(--accent1), var(--accent2), var(--accent3));
-    border-radius: 2px;
-  }
-  .timeline-item { position: relative; margin-bottom: 2rem; padding-left: 1.25rem; }
-  .timeline-dot {
-    position: absolute; left: -1.9rem; top: 6px;
-    width: 12px; height: 12px; border-radius: 50%;
-    background: var(--accent1); border: 2px solid var(--bg);
-    box-shadow: 0 0 0 3px rgba(124,58,237,0.2);
-  }
-  .timeline-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.3rem; }
-  .timeline-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; }
-  .timeline-company { font-size: 0.85rem; color: var(--accent1); font-weight: 500; margin: 0.15rem 0; }
-  .timeline-year {
-    background: var(--tag-bg); color: var(--tag-text);
-    border-radius: 20px; padding: 0.2rem 0.7rem; font-size: 0.76rem; font-weight: 600; white-space: nowrap;
-  }
-  .timeline-list { margin-top: 0.6rem; padding-left: 1rem; }
-  .timeline-list li { font-size: 0.86rem; color: var(--text2); margin-bottom: 0.3rem; }
-
-  /* EDUCATION */
-  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
-  .edu-card {
-    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
-    padding: 1.25rem; display: flex; flex-direction: column; gap: 0.4rem;
-  }
-  .edu-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
-  .edu-title { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; }
-  .edu-inst { font-size: 0.82rem; color: var(--accent1); font-weight: 500; }
-  .edu-year { font-size: 0.78rem; color: var(--text2); }
-
-  /* CONTACT */
-  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
-  .contact-card {
-    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
-    padding: 1.25rem; display: flex; flex-direction: column; gap: 0.4rem; text-decoration: none;
-    transition: transform 0.2s, border-color 0.2s; color: var(--text);
-  }
-  .contact-card:hover { transform: translateY(-3px); border-color: var(--accent1); }
-  .contact-label { font-size: 0.78rem; color: var(--text2); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
-  .contact-value { font-size: 0.9rem; font-weight: 500; color: var(--accent1); word-break: break-all; }
-
-  /* FOOTER */
-  footer {
-    text-align: center; padding: 2.5rem; border-top: 1px solid var(--border);
-    font-size: 0.83rem; color: var(--text2);
-  }
-
-  /* DIVIDER */
-  .divider {
-    height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent);
-    max-width: 960px; margin: 0 auto;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reychel Fallas — Full Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">RF.</div>
-  <div class="nav-links">
-    <a href="#skills" data-es="Habilidades" data-en="Skills">Habilidades</a>
-    <a href="#projects" data-es="Proyectos" data-en="Projects">Proyectos</a>
-    <a href="#experience" data-es="Experiencia" data-en="Experience">Experiencia</a>
-    <a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a>
-  </div>
-  <div class="nav-controls">
-    <button class="ctrl-btn" id="lang-btn" onclick="toggleLang()">🌐 EN</button>
-    <button class="ctrl-btn" id="dark-btn" onclick="toggleTheme()">🌙</button>
-  </div>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <div class="hero-badge" data-es="✨ Disponible para nuevas oportunidades" data-en="✨ Available for new opportunities">✨ Disponible para nuevas oportunidades</div>
-    <h1>Reychel<br><span>Fallas Bogantes</span></h1>
-    <div class="hero-role" data-es="Desarrolladora Full Stack · Diseñadora UI/UX" data-en="Full Stack Developer · UI/UX Designer">Desarrolladora Full Stack · Diseñadora UI/UX</div>
-    <p class="hero-desc" data-es="Construyo aplicaciones web completas con React, Django, PostgreSQL y Docker. Certificada en Azure, apasionada por el código limpio y el diseño funcional." data-en="I build complete web applications with React, Django, PostgreSQL and Docker. Azure certified, passionate about clean code and functional design.">Construyo aplicaciones web completas con React, Django, PostgreSQL y Docker. Certificada en Azure, apasionada por el código limpio y el diseño funcional.</p>
-    <div class="hero-btns">
-      <a class="btn-primary" href="#projects" data-es="Ver proyectos →" data-en="View projects →">Ver proyectos →</a>
-      <a class="btn-outline" href="mailto:rfallas.works@gmail.com" data-es="✉ Contactar" data-en="✉ Contact me">✉ Contactar</a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat-item"><div class="stat-num">3</div><div class="stat-label" data-es="Proyectos reales" data-en="Real projects">Proyectos reales</div></div>
-      <div class="stat-item"><div class="stat-num">2</div><div class="stat-label" data-es="Certificaciones" data-en="Certifications">Certificaciones</div></div>
-      <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label" data-es="Tecnologías" data-en="Technologies">Tecnologías</div></div>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- SKILLS -->
-<section id="skills">
-  <h2 class="section-title" data-es="Habilidades <span>Técnicas</span>" data-en="Technical <span>Skills</span>">Habilidades <span>Técnicas</span></h2>
-  <p class="section-subtitle" data-es="Stack completo de herramientas que uso para construir soluciones." data-en="Complete stack of tools I use to build solutions.">Stack completo de herramientas que uso para construir soluciones.</p>
-  <div class="skills-grid">
-    <div class="skill-category">
-      <div class="skill-cat-title"><div class="skill-dot" style="background:#7c3aed"></div><span data-es="Frontend" data-en="Frontend">Frontend</span></div>
-      <div class="tags">
-        <span class="tag">React</span><span class="tag">Vite</span><span class="tag">TypeScript</span>
-        <span class="tag">JavaScript</span><span class="tag">HTML5</span><span class="tag">CSS3</span>
-        <span class="tag">Bootstrap</span>
-      </div>
-    </div>
-    <div class="skill-category">
-      <div class="skill-cat-title"><div class="skill-dot" style="background:#ec4899"></div><span data-es="Backend" data-en="Backend">Backend</span></div>
-      <div class="tags">
-        <span class="tag">Python</span><span class="tag">Django REST</span><span class="tag">Node.js</span>
-        <span class="tag">APIs RESTful</span><span class="tag">JWT</span><span class="tag">OAuth 2.0</span>
-      </div>
-    </div>
-    <div class="skill-category">
-      <div class="skill-cat-title"><div class="skill-dot" style="background:#06b6d4"></div><span data-es="Bases de Datos" data-en="Databases">Bases de Datos</span></div>
-      <div class="tags">
-        <span class="tag">PostgreSQL</span><span class="tag">MySQL</span>
-      </div>
-    </div>
-    <div class="skill-category">
-      <div class="skill-cat-title"><div class="skill-dot" style="background:#f59e0b"></div><span data-es="DevOps & Herramientas" data-en="DevOps & Tools">DevOps & Herramientas</span></div>
-      <div class="tags">
-        <span class="tag">Docker</span><span class="tag">GitHub Actions</span><span class="tag">Git</span>
-        <span class="tag">Celery</span><span class="tag">Redis</span><span class="tag">Postman</span>
-        <span class="tag">Azure AZ-900</span>
-      </div>
-    </div>
-    <div class="skill-category">
-      <div class="skill-cat-title"><div class="skill-dot" style="background:#8b5cf6"></div><span data-es="Diseño" data-en="Design">Diseño</span></div>
-      <div class="tags">
-        <span class="tag">Figma</span><span class="tag">Photoshop</span><span class="tag">Illustrator</span>
-        <span class="tag">After Effects</span><span class="tag">Canva</span><span class="tag">Cloudinary</span>
-      </div>
-    </div>
-    <div class="skill-category">
-      <div class="skill-cat-title"><div class="skill-dot" style="background:#10b981"></div><span data-es="Metodologías" data-en="Methodologies">Metodologías</span></div>
-      <div class="tags">
-        <span class="tag">Agile</span><span class="tag">Scrum</span><span class="tag">Trello</span>
-        <span class="tag">PayPal SDK</span><span class="tag">pytest</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <h2 class="section-title" data-es="Mis <span>Proyectos</span>" data-en="My <span>Projects</span>">Mis <span>Proyectos</span></h2>
-  <p class="section-subtitle" data-es="Aplicaciones web reales, construidas de principio a fin." data-en="Real web applications, built from start to finish.">Aplicaciones web reales, construidas de principio a fin.</p>
-  <div class="projects-grid">
-
-    <div class="project-card">
-      <div class="project-icon" style="background:rgba(124,58,237,0.15)">💼</div>
-      <div class="project-year">2026</div>
-      <div class="project-title" data-es="Bolsa de Empleo — Zona Franca La Lima" data-en="Job Board — Zona Franca La Lima">Bolsa de Empleo — Zona Franca La Lima</div>
-      <div class="project-desc" data-es="Plataforma multi-perfil que conecta candidatos, empresas e instituciones educativas. Autenticación avanzada con JWT y Google OAuth, paneles diferenciados y analíticas centralizadas." data-en="Multi-profile platform connecting candidates, companies, and educational institutions. Advanced auth with JWT and Google OAuth, differentiated dashboards and centralized analytics.">Plataforma multi-perfil que conecta candidatos, empresas e instituciones educativas. Autenticación avanzada con JWT y Google OAuth, paneles diferenciados y analíticas centralizadas.</div>
-      <div class="project-tech">
-        <span class="tech-tag">React + Vite</span><span class="tech-tag">Django REST</span>
-        <span class="tech-tag">PostgreSQL</span><span class="tech-tag">JWT</span>
-        <span class="tech-tag">Celery</span><span class="tech-tag">Redis</span><span class="tech-tag">Cloudinary</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-icon" style="background:rgba(236,72,153,0.15)">🩸</div>
-      <div class="project-year">2025</div>
-      <div class="project-title" data-es="VidaConectada — CCSS Donación de Sangre" data-en="VidaConectada — Blood Donation CCSS">VidaConectada — CCSS Donación de Sangre</div>
-      <div class="project-desc" data-es="Plataforma para gestión de campañas de donación del Hospital Monseñor Sanabria. Control de acceso por roles, módulo administrativo completo y diseño responsivo." data-en="Platform for managing blood donation campaigns at Hospital Monseñor Sanabria. Role-based access control, full admin module, and responsive design.">Plataforma para gestión de campañas de donación del Hospital Monseñor Sanabria. Control de acceso por roles, módulo administrativo completo y diseño responsivo.</div>
-      <div class="project-tech">
-        <span class="tech-tag">React</span><span class="tech-tag">Django REST</span>
-        <span class="tech-tag">MySQL</span><span class="tech-tag">JWT</span><span class="tech-tag">Docker</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-icon" style="background:rgba(6,182,212,0.15)">🛒</div>
-      <div class="project-year">2025</div>
-      <div class="project-title" data-es="Plataforma E-Commerce Full Stack" data-en="Full Stack E-Commerce Platform">Plataforma E-Commerce Full Stack</div>
-      <div class="project-desc" data-es="E-commerce completo con login, catálogo, carrito y pasarela de pago. Google OAuth, integración PayPal SDK y gestión de imágenes con Cloudinary." data-en="Complete e-commerce with login, catalog, cart, and payment gateway. Google OAuth, PayPal SDK integration, and Cloudinary image management.">E-commerce completo con login, catálogo, carrito y pasarela de pago. Google OAuth, integración PayPal SDK y gestión de imágenes con Cloudinary.</div>
-      <div class="project-tech">
-        <span class="tech-tag">React + Vite</span><span class="tech-tag">JSON Server</span>
-        <span class="tech-tag">Google OAuth</span><span class="tech-tag">PayPal SDK</span><span class="tech-tag">Cloudinary</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <h2 class="section-title" data-es="<span>Experiencia</span>" data-en="<span>Experience</span>"><span>Experiencia</span></h2>
-  <p class="section-subtitle" data-es="Proyectos reales con impacto." data-en="Real projects with impact.">Proyectos reales con impacto.</p>
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-header">
-        <div>
-          <div class="timeline-title" data-es="Desarrolladora Full Stack" data-en="Full Stack Developer">Desarrolladora Full Stack</div>
-          <div class="timeline-company">Hackathon FWD Costa Rica</div>
-        </div>
-        <div class="timeline-year">2026</div>
-      </div>
-      <ul class="timeline-list">
-        <li data-es="Plataforma de bolsa de empleo multi-perfil para Zona Franca La Lima" data-en="Multi-profile job board platform for Zona Franca La Lima">Plataforma de bolsa de empleo multi-perfil para Zona Franca La Lima</li>
-        <li data-es="JWT + Google OAuth 2.0 con redirección por roles" data-en="JWT + Google OAuth 2.0 with role-based redirection">JWT + Google OAuth 2.0 con redirección por roles</li>
-        <li data-es="Paneles para candidatos, empresas e instituciones con analíticas" data-en="Dashboards for candidates, companies, and institutions with analytics">Paneles para candidatos, empresas e instituciones con analíticas</li>
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo">RF<span class="dot">.</span></div>
+      <ul class="nav-links">
+        <li><a href="#about"    data-es="Sobre mí"    data-en="About">Sobre mí</a></li>
+        <li><a href="#skills"   data-es="Skills"      data-en="Skills">Skills</a></li>
+        <li><a href="#projects" data-es="Proyectos"   data-en="Projects">Proyectos</a></li>
+        <li><a href="#timeline" data-es="Experiencia" data-en="Experience">Experiencia</a></li>
+        <li><a href="#contact"  data-es="Contacto"    data-en="Contact">Contacto</a></li>
       </ul>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-dot" style="background: var(--accent2);"></div>
-      <div class="timeline-header">
-        <div>
-          <div class="timeline-title" data-es="Desarrolladora Full Stack" data-en="Full Stack Developer">Desarrolladora Full Stack</div>
-          <div class="timeline-company">FWD Costa Rica — VidaConectada (CCSS)</div>
-        </div>
-        <div class="timeline-year">2025</div>
+      <div class="nav-actions">
+        <button class="pill-btn" id="lang-btn" onclick="toggleLang()" aria-label="Cambiar idioma">🌐 EN</button>
+        <button class="pill-btn" id="theme-btn" onclick="toggleTheme()" aria-label="Cambiar tema">🌙 Oscuro</button>
       </div>
-      <ul class="timeline-list">
-        <li data-es="Plataforma de gestión de campañas de donación de sangre" data-en="Blood donation campaign management platform">Plataforma de gestión de campañas de donación de sangre</li>
-        <li data-es="Autenticación JWT y control de acceso por roles" data-en="JWT authentication and role-based access control">Autenticación JWT y control de acceso por roles</li>
-        <li data-es="Optimización de base de datos MySQL y APIs REST" data-en="MySQL database optimization and REST APIs">Optimización de base de datos MySQL y APIs REST</li>
-      </ul>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">☰</button>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-dot" style="background: var(--accent3);"></div>
-      <div class="timeline-header">
-        <div>
-          <div class="timeline-title" data-es="Desarrolladora Frontend" data-en="Frontend Developer">Desarrolladora Frontend</div>
-          <div class="timeline-company">FWD Costa Rica — E-Commerce</div>
-        </div>
-        <div class="timeline-year">2025</div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#about"    onclick="closeMenu()" data-es="Sobre mí"    data-en="About">Sobre mí</a>
+      <a href="#skills"   onclick="closeMenu()" data-es="Skills"      data-en="Skills">Skills</a>
+      <a href="#projects" onclick="closeMenu()" data-es="Proyectos"   data-en="Projects">Proyectos</a>
+      <a href="#timeline" onclick="closeMenu()" data-es="Experiencia" data-en="Experience">Experiencia</a>
+      <a href="#contact"  onclick="closeMenu()" data-es="Contacto"    data-en="Contact">Contacto</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <div class="hero-blob blob1"></div>
+    <div class="hero-blob blob2"></div>
+    <div class="hero-blob blob3"></div>
+    <div class="hero-content">
+      <div class="hero-badge" data-es="✦ Disponible para nuevas oportunidades" data-en="✦ Available for new opportunities">✦ Disponible para nuevas oportunidades</div>
+      <h1 class="hero-name">Reychel<br><span>Fallas.</span></h1>
+      <p class="hero-role" data-es="Desarrolladora Full Stack · Diseñadora UI/UX" data-en="Full Stack Developer · UI/UX Designer">Desarrolladora Full Stack · Diseñadora UI/UX</p>
+      <p class="hero-desc" data-es="Construyo aplicaciones web completas y experiencias digitales con impacto real. Apasionada por el código limpio, el diseño funcional y las soluciones escalables." data-en="I build complete web applications and digital experiences with real impact. Passionate about clean code, functional design, and scalable solutions.">Construyo aplicaciones web completas y experiencias digitales con impacto real. Apasionada por el código limpio, el diseño funcional y las soluciones escalables.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary" data-es="Ver proyectos" data-en="View projects">Ver proyectos</a>
+        <a href="mailto:rfallas.works@gmail.com" class="btn-outline" data-es="Contactarme" data-en="Contact me">Contactarme</a>
       </div>
-      <ul class="timeline-list">
-        <li data-es="E-commerce completo con React + Vite, autenticación y pagos" data-en="Complete e-commerce with React + Vite, auth and payments">E-commerce completo con React + Vite, autenticación y pagos</li>
-        <li data-es="Integración PayPal SDK y Google OAuth" data-en="PayPal SDK and Google OAuth integration">Integración PayPal SDK y Google OAuth</li>
-      </ul>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-n">3</span>
+          <span class="stat-l" data-es="Proyectos" data-en="Projects">Proyectos</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat">
+          <span class="stat-n">2</span>
+          <span class="stat-l" data-es="Certificaciones" data-en="Certifications">Certificaciones</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat">
+          <span class="stat-n">10+</span>
+          <span class="stat-l" data-es="Tecnologías" data-en="Technologies">Tecnologías</span>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- EDUCATION -->
-<section id="education">
-  <h2 class="section-title" data-es="Formación <span>Académica</span>" data-en="<span>Education</span>">Formación <span>Académica</span></h2>
-  <p class="section-subtitle" data-es="Certificaciones y estudios." data-en="Certifications and studies.">Certificaciones y estudios.</p>
-  <div class="edu-grid">
-    <div class="edu-card">
-      <div class="edu-icon">☁️</div>
-      <div class="edu-title" data-es="Microsoft Azure Fundamentals (AZ-900)" data-en="Microsoft Azure Fundamentals (AZ-900)">Microsoft Azure Fundamentals (AZ-900)</div>
-      <div class="edu-inst">INA</div>
-      <div class="edu-year">2026</div>
+    <div class="hero-visual">
+      <div class="avatar-ring">
+        <div class="avatar-inner">RF</div>
+      </div>
+      <div class="floating-tag t1">React</div>
+      <div class="floating-tag t2">Django</div>
+      <div class="floating-tag t3">Docker</div>
+      <div class="floating-tag t4">PostgreSQL</div>
+      <div class="floating-tag t5">Azure</div>
     </div>
-    <div class="edu-card">
-      <div class="edu-icon">🔐</div>
-      <div class="edu-title" data-es="Endpoint Security & Network Defense" data-en="Endpoint Security & Network Defense">Endpoint Security & Network Defense</div>
-      <div class="edu-inst">Cisco / INA</div>
-      <div class="edu-year">2026</div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="section-head">
+      <h2 class="section-title" data-es="Habilidades <em>Técnicas</em>" data-en="Technical <em>Skills</em>">Habilidades <em>Técnicas</em></h2>
+      <p class="section-sub" data-es="Stack completo para construir soluciones de principio a fin." data-en="Complete stack to build solutions from start to finish.">Stack completo para construir soluciones de principio a fin.</p>
     </div>
-    <div class="edu-card">
-      <div class="edu-icon">💻</div>
-      <div class="edu-title" data-es="Desarrollo Full Stack" data-en="Full Stack Development">Desarrollo Full Stack</div>
-      <div class="edu-inst">FWD Costa Rica Tech & Freedom</div>
-      <div class="edu-year">2025</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon" style="background: rgba(211,50,67,0.12)">🖥️</div>
+        <h3 class="skill-cat">Frontend</h3>
+        <div class="tags">
+          <span class="tag">React</span><span class="tag">Vite</span><span class="tag">TypeScript</span>
+          <span class="tag">JavaScript</span><span class="tag">HTML5</span><span class="tag">CSS3</span>
+          <span class="tag">Bootstrap</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon" style="background: rgba(59,152,144,0.12)">⚙️</div>
+        <h3 class="skill-cat">Backend</h3>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Django REST</span><span class="tag">Node.js</span>
+          <span class="tag">APIs RESTful</span><span class="tag">JWT</span><span class="tag">OAuth 2.0</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon" style="background: rgba(113,136,4,0.12)">🗄️</div>
+        <h3 class="skill-cat" data-es="Bases de Datos" data-en="Databases">Bases de Datos</h3>
+        <div class="tags">
+          <span class="tag">PostgreSQL</span><span class="tag">MySQL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon" style="background: rgba(169,191,83,0.15)">🚀</div>
+        <h3 class="skill-cat">DevOps</h3>
+        <div class="tags">
+          <span class="tag">Docker</span><span class="tag">GitHub Actions</span><span class="tag">Git</span>
+          <span class="tag">Celery</span><span class="tag">Redis</span><span class="tag">Azure AZ-900</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon" style="background: rgba(224,124,142,0.15)">🎨</div>
+        <h3 class="skill-cat" data-es="Diseño" data-en="Design">Diseño</h3>
+        <div class="tags">
+          <span class="tag">Figma</span><span class="tag">Photoshop</span><span class="tag">Illustrator</span>
+          <span class="tag">After Effects</span><span class="tag">Canva</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon" style="background: rgba(160,216,205,0.2)">📋</div>
+        <h3 class="skill-cat" data-es="Metodologías" data-en="Methodologies">Metodologías</h3>
+        <div class="tags">
+          <span class="tag">Agile</span><span class="tag">Scrum</span><span class="tag">Trello</span>
+          <span class="tag">PayPal SDK</span><span class="tag">pytest</span>
+        </div>
+      </div>
     </div>
-    <div class="edu-card">
-      <div class="edu-icon">🎨</div>
-      <div class="edu-title" data-es="Técnico en Diseño Publicitario" data-en="Advertising Design Technician">Técnico en Diseño Publicitario</div>
-      <div class="edu-inst">C.T.P. Puntarenas</div>
-      <div class="edu-year">2020</div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section section-alt" id="projects">
+    <div class="section-head">
+      <h2 class="section-title" data-es="Mis <em>Proyectos</em>" data-en="My <em>Projects</em>">Mis <em>Proyectos</em></h2>
+      <p class="section-sub" data-es="Aplicaciones web reales con impacto. Haz clic en la previsualización para ver el proyecto en vivo." data-en="Real web applications with impact. Click the preview to see the live project.">Aplicaciones web reales con impacto. Haz clic en la previsualización para ver el proyecto en vivo.</p>
     </div>
-  </div>
-</section>
+    <div class="projects-grid">
 
-<div class="divider"></div>
+      <!-- Proyecto 1: E-Commerce -->
+      <article class="project-card">
+        <a href="https://reychelbogantes.github.io/Koa-Macram---Proyecto-Web/" target="_blank" rel="noopener" class="project-preview-link" aria-label="Ver E-Commerce en vivo">
+          <div class="project-preview">
+            <iframe
+              src="https://reychelbogantes.github.io/Koa-Macram---Proyecto-Web/"
+              title="E-Commerce Preview"
+              loading="lazy"
+              sandbox="allow-scripts allow-same-origin allow-forms"
+              aria-hidden="true"
+              tabindex="-1"
+            ></iframe>
+            <div class="preview-overlay">
+              <span class="preview-cta" data-es="Ver proyecto →" data-en="View project →">Ver proyecto →</span>
+            </div>
+          </div>
+        </a>
+        <div class="project-body">
+          <div class="project-top">
+            <span class="project-year">2025</span>
+            <span class="project-type" data-es="Frontend" data-en="Frontend">Frontend</span>
+          </div>
+          <h3 class="project-title" data-es="Plataforma E-Commerce" data-en="E-Commerce Platform">Plataforma E-Commerce</h3>
+          <p class="project-desc" data-es="E-commerce completo con catálogo, carrito y pasarela de pago. Google OAuth, PayPal SDK y gestión de imágenes con Cloudinary." data-en="Complete e-commerce with catalog, cart, and payment gateway. Google OAuth, PayPal SDK, and Cloudinary image management.">E-commerce completo con catálogo, carrito y pasarela de pago. Google OAuth, PayPal SDK y gestión de imágenes con Cloudinary.</p>
+          <div class="project-tech">
+            <span class="tech">React + Vite</span><span class="tech">JSON Server</span>
+            <span class="tech">Google OAuth</span><span class="tech">PayPal SDK</span>
+          </div>
+        </div>
+      </article>
 
-<!-- CONTACT -->
-<section id="contact">
-  <h2 class="section-title" data-es="¡<span>Hablemos!</span>" data-en="Let's <span>Talk!</span>">¡<span>Hablemos!</span></h2>
-  <p class="section-subtitle" data-es="Estoy disponible para proyectos, colaboraciones y oportunidades." data-en="I'm available for projects, collaborations, and opportunities.">Estoy disponible para proyectos, colaboraciones y oportunidades.</p>
-  <div class="contact-grid">
-    <a class="contact-card" href="mailto:rfallas.works@gmail.com">
-      <div class="contact-label" data-es="Email" data-en="Email">Email</div>
-      <div class="contact-value">rfallas.works@gmail.com</div>
-    </a>
-    <a class="contact-card" href="https://linkedin.com/in/reychelfallas" target="_blank">
-      <div class="contact-label">LinkedIn</div>
-      <div class="contact-value">linkedin.com/in/reychelfallas</div>
-    </a>
-    <a class="contact-card" href="https://github.com/reychelbogantes" target="_blank">
-      <div class="contact-label">GitHub</div>
-      <div class="contact-value">github.com/reychelbogantes</div>
-    </a>
-    <div class="contact-card">
-      <div class="contact-label" data-es="Ubicación" data-en="Location">Ubicación</div>
-      <div class="contact-value">El Roble, Puntarenas 🇨🇷</div>
+      <!-- Proyecto 2: VidaConectada -->
+      <article class="project-card">
+        <div class="project-preview no-link">
+          <div class="preview-placeholder">
+            <span class="placeholder-icon">🩸</span>
+            <p data-es="Vista previa próximamente" data-en="Preview coming soon">Vista previa próximamente</p>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-top">
+            <span class="project-year">2025</span>
+            <span class="project-type" data-es="Full Stack" data-en="Full Stack">Full Stack</span>
+          </div>
+          <h3 class="project-title" data-es="VidaConectada — CCSS" data-en="VidaConectada — CCSS">VidaConectada — CCSS</h3>
+          <p class="project-desc" data-es="Plataforma para campañas de donación de sangre del Hospital Monseñor Sanabria. Control de roles, módulo admin y diseño responsivo." data-en="Platform for blood donation campaigns at Hospital Monseñor Sanabria. Role-based access, admin module, and responsive design.">Plataforma para campañas de donación de sangre del Hospital Monseñor Sanabria. Control de roles, módulo admin y diseño responsivo.</p>
+          <div class="project-tech">
+            <span class="tech">React</span><span class="tech">Django REST</span>
+            <span class="tech">MySQL</span><span class="tech">Docker</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Proyecto 3: Bolsa de Empleo -->
+      <article class="project-card">
+        <div class="project-preview no-link">
+          <div class="preview-placeholder">
+            <span class="placeholder-icon">💼</span>
+            <p data-es="Vista previa próximamente" data-en="Preview coming soon">Vista previa próximamente</p>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-top">
+            <span class="project-year">2026</span>
+            <span class="project-type" data-es="Full Stack" data-en="Full Stack">Full Stack</span>
+          </div>
+          <h3 class="project-title" data-es="Bolsa de Empleo — Zona Franca" data-en="Job Board — Free Zone">Bolsa de Empleo — Zona Franca</h3>
+          <p class="project-desc" data-es="Plataforma multi-perfil con paneles para candidatos, empresas e instituciones. JWT + Google OAuth 2.0, analíticas centralizadas." data-en="Multi-profile platform with dashboards for candidates, companies, and institutions. JWT + Google OAuth 2.0, centralized analytics.">Plataforma multi-perfil con paneles para candidatos, empresas e instituciones. JWT + Google OAuth 2.0, analíticas centralizadas.</p>
+          <div class="project-tech">
+            <span class="tech">React + Vite</span><span class="tech">Django REST</span>
+            <span class="tech">PostgreSQL</span><span class="tech">Celery + Redis</span>
+          </div>
+        </div>
+      </article>
+
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <span data-es="© 2026 Reychel Fallas Bogantes — Diseñado y construido con 💜" data-en="© 2026 Reychel Fallas Bogantes — Designed and built with 💜">© 2026 Reychel Fallas Bogantes — Diseñado y construido con 💜</span>
-</footer>
+  <!-- TIMELINE -->
+  <section class="section" id="timeline">
+    <div class="section-head">
+      <h2 class="section-title" data-es="<em>Experiencia</em> & Educación" data-en="<em>Experience</em> & Education"><em>Experiencia</em> & Educación</h2>
+      <p class="section-sub" data-es="Mi camino en el mundo del desarrollo." data-en="My path in the world of development.">Mi camino en el mundo del desarrollo.</p>
+    </div>
+    <div class="timeline">
 
-<script>
-let lang = 'es';
-let darkMode = false;
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div>
+              <span class="tl-tag" data-es="Trabajo" data-en="Work">Trabajo</span>
+              <h3 class="tl-title" data-es="Desarrolladora Full Stack" data-en="Full Stack Developer">Desarrolladora Full Stack</h3>
+              <p class="tl-company">Hackathon FWD Costa Rica</p>
+            </div>
+            <span class="tl-year">2026</span>
+          </div>
+          <ul class="tl-list">
+            <li data-es="Plataforma de bolsa de empleo multi-perfil para Zona Franca La Lima." data-en="Multi-profile job board platform for Zona Franca La Lima.">Plataforma de bolsa de empleo multi-perfil para Zona Franca La Lima.</li>
+            <li data-es="JWT + Google OAuth 2.0, Celery + Redis y analíticas centralizadas." data-en="JWT + Google OAuth 2.0, Celery + Redis and centralized analytics.">JWT + Google OAuth 2.0, Celery + Redis y analíticas centralizadas.</li>
+          </ul>
+        </div>
+      </div>
 
-function toggleTheme() {
-  darkMode = !darkMode;
-  document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : '');
-  document.getElementById('dark-btn').textContent = darkMode ? '☀️' : '🌙';
-}
+      <div class="tl-item">
+        <div class="tl-dot dot2"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div>
+              <span class="tl-tag cert-tag" data-es="Certificación" data-en="Certification">Certificación</span>
+              <h3 class="tl-title">Microsoft Azure Fundamentals (AZ-900)</h3>
+              <p class="tl-company">INA</p>
+            </div>
+            <span class="tl-year">2026</span>
+          </div>
+        </div>
+      </div>
 
-function toggleLang() {
-  lang = lang === 'es' ? 'en' : 'es';
-  document.getElementById('lang-btn').textContent = lang === 'es' ? '🌐 EN' : '🌐 ES';
-  document.querySelectorAll('[data-es]').forEach(el => {
-    const text = el.getAttribute('data-' + lang);
-    if (text) el.innerHTML = text;
-  });
-}
-</script>
+      <div class="tl-item">
+        <div class="tl-dot dot3"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div>
+              <span class="tl-tag cert-tag" data-es="Certificación" data-en="Certification">Certificación</span>
+              <h3 class="tl-title">Endpoint Security &amp; Network Defense</h3>
+              <p class="tl-company">Cisco / INA</p>
+            </div>
+            <span class="tl-year">2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div>
+              <span class="tl-tag" data-es="Trabajo" data-en="Work">Trabajo</span>
+              <h3 class="tl-title" data-es="Desarrolladora Full Stack" data-en="Full Stack Developer">Desarrolladora Full Stack</h3>
+              <p class="tl-company">FWD Costa Rica — VidaConectada (CCSS)</p>
+            </div>
+            <span class="tl-year">2025</span>
+          </div>
+          <ul class="tl-list">
+            <li data-es="Plataforma de donación de sangre para Hospital Monseñor Sanabria." data-en="Blood donation platform for Hospital Monseñor Sanabria.">Plataforma de donación de sangre para Hospital Monseñor Sanabria.</li>
+            <li data-es="JWT, control de acceso por roles y APIs REST con MySQL." data-en="JWT, role-based access control, and REST APIs with MySQL.">JWT, control de acceso por roles y APIs REST con MySQL.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div>
+              <span class="tl-tag" data-es="Trabajo" data-en="Work">Trabajo</span>
+              <h3 class="tl-title" data-es="Desarrolladora Frontend" data-en="Frontend Developer">Desarrolladora Frontend</h3>
+              <p class="tl-company">FWD Costa Rica — E-Commerce</p>
+            </div>
+            <span class="tl-year">2025</span>
+          </div>
+          <ul class="tl-list">
+            <li data-es="E-commerce con React + Vite, Google OAuth y PayPal SDK." data-en="E-commerce with React + Vite, Google OAuth and PayPal SDK.">E-commerce con React + Vite, Google OAuth y PayPal SDK.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot dot3"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div>
+              <span class="tl-tag edu-tag" data-es="Educación" data-en="Education">Educación</span>
+              <h3 class="tl-title" data-es="Desarrollo Full Stack" data-en="Full Stack Development">Desarrollo Full Stack</h3>
+              <p class="tl-company">FWD Costa Rica Tech &amp; Freedom</p>
+            </div>
+            <span class="tl-year">2025</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot dot3"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div>
+              <span class="tl-tag edu-tag" data-es="Educación" data-en="Education">Educación</span>
+              <h3 class="tl-title" data-es="Técnico en Diseño Publicitario" data-en="Advertising Design Technician">Técnico en Diseño Publicitario</h3>
+              <p class="tl-company">C.T.P. Puntarenas</p>
+            </div>
+            <span class="tl-year">2020</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section section-alt" id="contact">
+    <div class="section-head">
+      <h2 class="section-title" data-es="¡<em>Hablemos!</em>" data-en="Let's <em>Talk!</em>">¡<em>Hablemos!</em></h2>
+      <p class="section-sub" data-es="Estoy disponible para proyectos, colaboraciones y oportunidades." data-en="I'm available for projects, collaborations, and opportunities.">Estoy disponible para proyectos, colaboraciones y oportunidades.</p>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:rfallas.works@gmail.com">
+        <span class="contact-icon">✉️</span>
+        <span class="contact-label" data-es="Email" data-en="Email">Email</span>
+        <span class="contact-val">rfallas.works@gmail.com</span>
+      </a>
+      <a class="contact-card" href="tel:+50686819901">
+        <span class="contact-icon">📱</span>
+        <span class="contact-label" data-es="Teléfono" data-en="Phone">Teléfono</span>
+        <span class="contact-val">+506 8681-9901</span>
+      </a>
+      <a class="contact-card" href="https://linkedin.com/in/reychelfallas" target="_blank" rel="noopener">
+        <span class="contact-icon">💼</span>
+        <span class="contact-label">LinkedIn</span>
+        <span class="contact-val">reychelfallas</span>
+      </a>
+      <a class="contact-card" href="https://github.com/reychelbogantes" target="_blank" rel="noopener">
+        <span class="contact-icon">🐙</span>
+        <span class="contact-label">GitHub</span>
+        <span class="contact-val">reychelbogantes</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p data-es="© 2026 Reychel Fallas Bogantes · Diseñado y construido con 🍓" data-en="© 2026 Reychel Fallas Bogantes · Designed and built with 🍓">© 2026 Reychel Fallas Bogantes · Diseñado y construido con 🍓</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
