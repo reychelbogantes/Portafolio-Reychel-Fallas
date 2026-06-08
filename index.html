@@ -224,12 +224,22 @@
 
       <!-- Proyecto 3: Bolsa de Empleo -->
       <article class="project-card">
-        <div class="project-preview no-link">
-          <div class="preview-placeholder">
-            <span class="placeholder-icon"><i data-lucide="linkedin"></i></span>
-            <p data-es="Vista previa próximamente" data-en="Preview coming soon">Vista previa próximamente</p>
+        <a href="https://reychelbogantes.github.io/Bolsa-de-empleo-ZFLL/" target="_blank" rel="noopener" class="project-preview-link" aria-label="Ver Bolsa de Empleo en vivo">
+          <div class="project-preview">
+            <iframe
+              src="https://reychelbogantes.github.io/Bolsa-de-empleo-ZFLL/"
+              title="Bolsa de Empleo Preview"
+              loading="lazy"
+              sandbox="allow-scripts allow-same-origin allow-forms"
+              aria-hidden="true"
+              tabindex="-1"
+              style="transform: none;"
+            ></iframe>
+            <div class="preview-overlay">
+              <span class="preview-cta" data-es="Ver proyecto →" data-en="View project →">Ver proyecto →</span>
+            </div>
           </div>
-        </div>
+        </a>
         <div class="project-body">
           <div class="project-top">
             <span class="project-year">2026</span>
@@ -240,6 +250,16 @@
           <div class="project-tech">
             <span class="tech">React + Vite</span><span class="tech">Django REST</span>
             <span class="tech">PostgreSQL</span><span class="tech">Celery + Redis</span>
+          </div>
+          <div style="margin-top:0.75rem; padding:0.6rem 0.8rem; background:rgba(59,152,144,0.08); border:1px solid rgba(59,152,144,0.2); border-radius:10px; font-size:0.78rem; color:var(--text2); line-height:1.8;">
+            <strong style="color:var(--c-teal);">🎭 <span data-es="Usuarios demo:" data-en="Demo users:">Usuarios demo</span></strong><br>
+            <span style="font-size:0.74rem;">
+              👤 <span data-es="Aspirante:" data-en="Applicant:">Aspirante:</span> <code>aspirante@demo.com</code><br>
+              🏢 <span data-es="Empresa:" data-en="Company:">Empresa:</span> <code>empresa@demo.com</code><br>
+              🏛️ <span data-es="Institución:" data-en="Institution:">Institución:</span> <code>institucion@demo.com</code><br>
+              🔑 <span data-es="Contraseña:" data-en="Password:">Contraseña:</span> <code>123456</code><br>
+              <em style="color:#f97316;" data-es="⚠️ Recomendado usar modo incógnito" data-en="⚠️ Recommended to use incognito mode">⚠️ Recomendado usar modo incógnito</em>
+            </span>
           </div>
         </div>
       </article>
