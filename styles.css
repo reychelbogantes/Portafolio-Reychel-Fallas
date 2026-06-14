@@ -912,3 +912,21 @@ footer {
   font-size: 26px;
   color: var(--c-teal);
 }
+
+.badges-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.badge-wrap {
+  display: block;
+  transition: transform 0.2s;
+  border-radius: var(--radius-md);
+}
+
+.badge-wrap:hover {
+  transform: translateY(-4px);
+}
