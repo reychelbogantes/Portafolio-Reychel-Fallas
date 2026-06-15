@@ -132,3 +132,30 @@ document.addEventListener('DOMContentLoaded', () => {
   initActiveNav();
   window.addEventListener('scroll', handleNavScroll, { passive: true });
 });
+
+
+// ─── PDF MODAL ─────────────────────────────
+function openPDFModal(pdfName, title) {
+      const modal = document.getElementById('pdfModal');
+      const frame = document.getElementById('pdfFrame');
+      
+      frame.src = './pdfs/' + pdfName;
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closePDFModal() {
+      const modal = document.getElementById('pdfModal');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Cerrar modal al hacer click fuera del contenido
+    document.addEventListener('DOMContentLoaded', function() {
+      const modal = document.getElementById('pdfModal');
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closePDFModal();
+        }
+      });
+    });
