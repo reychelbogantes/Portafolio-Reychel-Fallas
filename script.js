@@ -130,6 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothLinks();
   initScrollReveal();
   initActiveNav();
+  initProjectMasonry();
+
   window.addEventListener('scroll', handleNavScroll, { passive: true });
 });
 
@@ -159,3 +161,42 @@ function openPDFModal(pdfName, title) {
         }
       });
     });
+
+    // ─── PROJECTS MASONRY ─────────────────────
+function initProjectMasonry() {
+  const grid = document.querySelector('.projects-grid');
+  if (!grid) return;
+
+  const cards = [...grid.querySelectorAll('.project-card')];
+  let animationFrame;
+
+  grid.classList.add('is-masonry');
+
+  function updateLayout() {
+    cancelAnimationFrame(animationFrame);
+
+    animationFrame = requestAnimationFrame(() => {
+      const styles = getComputedStyle(grid);
+      const rowHeight = parseFloat(styles.gridAutoRows) || 1;
+      const cardGap = parseFloat(styles.columnGap) || 24;
+
+      cards.forEach(card => {
+        const cardHeight = card.getBoundingClientRect().height;
+        const rowSpan = Math.ceil(
+          (cardHeight + cardGap) / rowHeight
+        );
+
+        card.style.gridRowEnd = `span ${rowSpan}`;
+      });
+    });
+  }
+
+  const resizeObserver = new ResizeObserver(updateLayout);
+
+  cards.forEach(card => {
+    resizeObserver.observe(card);
+  });
+
+  window.addEventListener('load', updateLayout, { once: true });
+  updateLayout();
+}
